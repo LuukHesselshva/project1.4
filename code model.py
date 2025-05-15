@@ -23,3 +23,5 @@ b_krit = math.sqrt(4*massa*veer_constante)
 
 def model(t,m,b,k,x0,v0):
     pass
+
+print("test")
