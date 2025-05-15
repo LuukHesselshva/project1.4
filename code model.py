@@ -2,6 +2,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+import pandas as pd
+
+#csv naam
+naam_csv = 'versnellingsprofiel_scherp.csv'
 
 # start waarde
 massa = 1 # in kg
@@ -20,6 +24,9 @@ tijd = np.linspace(t0,teind,nt)
 
 #kritische demp
 b_krit = math.sqrt(4*massa*veer_constante)
+
+def lees_bestand(naam_csv):
+    df = pd.read_csv(naam_csv)
 
 def model(t,m,b,k,x0,v0):
     pass
