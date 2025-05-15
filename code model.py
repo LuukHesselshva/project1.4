@@ -28,7 +28,6 @@ b_krit = math.sqrt(4*massa*veer_constante)
 def lees_bestand(naam_csv):
     df = pd.read_csv(naam_csv)
     df.columns = df.columns.str.strip()  # verwijder spaties
-    #df = df.rename(columns={'# tijd (s)': 'tijd', 'versnelling (m/s^2)': 'versnelling'})
     tijd = np.array(df['# tijd (s)'])
     versnelling = np.array(df['versnelling (m/s^2)'])
     #print('tijd',tijd)
