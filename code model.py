@@ -10,7 +10,7 @@ naam_csv = 'versnellingsprofiel_scherp.csv'
 # start waarde
 massa = 1 # in kg
 demmpingsfactor = 1 # Kg/s
-veer_constante = 1 # N/m
+veer_constante = 10 # N/m
 x0 = 0 # m
 v0 = 0 # m/s
 F0 = 0 # Ns
@@ -48,14 +48,21 @@ def model(t,m,b,k,x0,v0,f):
         a[i] = (F_ext[i] - b * v[i] - k * x[i]) / m
         v[i + 1] = v[i] + a[i] * dt
         x[i + 1] = x[i] + v[i] * dt
+        a_sensor = (x * k)/m
 
     a[-1] = (F_ext[-1] - b * v[-1] - k * x[-1]) / m
-    return x, v, a
+    return x, v, a, a_sensor
 
 t, f = lees_bestand(naam_csv)
 
-x, v, a = model(t,massa,demmpingsfactor,veer_constante,x0,v0,f)
-plt.plot(t,x)
-plt.plot(t,v)
-plt.plot(t,a)
+x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,f)
+plt.plot(t,x,label='positie(m)')
+plt.plot(t,v,label='snelheid(m/s)')
+plt.plot(t,a,label='versnelling(m/s^2)')
+plt.plot(t,a_sensor,label='versnelling sensor(m/s^2)')
+plt.xlabel('Tijd (s)')
+plt.ylabel('Grootheden')
+plt.title('Massa-Veer-Demper Systeem met Externe Aandrijving')
+plt.legend()
+plt.grid(True)
 plt.show()
