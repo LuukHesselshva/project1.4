@@ -30,32 +30,30 @@ def lees_bestand(naam_csv):
     df.columns = df.columns.str.strip()  # verwijder spaties
     tijd = np.array(df['# tijd (s)'])
     versnelling = np.array(df['versnelling (m/s^2)'])
-    #print('tijd',tijd)
-    #print('versnelling',versnelling)
-    return tijd,versnelling
+    kracht = versnelling * massa
+    return tijd,kracht
 
-def model(t,m,b,k,x0,v0,f):
+def model(t,m,b,k,x0,v0,F):
     l = len(t)
     x = np.zeros(l)
     v = np.zeros(l)
     a = np.zeros(l)
 
     x[0],v[0] = x0, v0
-    
-    F_ext = massa * f
+    F_ext = F
 
     for i in range(l - 1):
         a[i] = (F_ext[i] - b * v[i] - k * x[i]) / m
         v[i + 1] = v[i] + a[i] * dt
         x[i + 1] = x[i] + v[i] * dt
-        a_sensor = (x * k)/m
+    a_sensor = (x * k)/m
 
     a[-1] = (F_ext[-1] - b * v[-1] - k * x[-1]) / m
     return x, v, a, a_sensor
 
-t, f = lees_bestand(naam_csv)
+t, F = lees_bestand(naam_csv)
+x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,F)
 
-x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,f)
 plt.plot(t,x,label='positie(m)')
 plt.plot(t,v,label='snelheid(m/s)')
 plt.plot(t,a,label='versnelling(m/s^2)')
