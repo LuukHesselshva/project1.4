@@ -46,6 +46,9 @@ x_array = np.linspace(xbegin,xeind,xstap)
 y_array = x_array
 trendline = linear_fit(a,ref,b)
 
+print("a: ", a)
+print("b: ", b)
+
 plt.plot(x_array,y_array,linestyle='--',color='red')
 plt.plot(ref,trendline,linestyle='--',color='blue')
 plt.scatter(ref,sensor_average)
