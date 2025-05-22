@@ -38,9 +38,10 @@ def model(t,m,b,k,x0,v0,F):
     x = np.zeros(l)
     v = np.zeros(l)
     a = np.zeros(l)
-
+    F_ext = np.zeros(l)
     x[0],v[0] = x0, v0
-    F_ext = F
+    for i in range(len(F)):
+        F_ext[i] = F[i]
 
     for i in range(l - 1):
         a[i] = (F_ext[i] - b * v[i] - k * x[i]) / m
@@ -52,6 +53,7 @@ def model(t,m,b,k,x0,v0,F):
     return x, v, a, a_sensor
 
 t, F = lees_bestand(naam_csv)
+#t = tijd
 x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,F)
 
 plt.plot(t,x,label='positie(m)')
