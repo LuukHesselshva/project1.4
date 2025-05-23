@@ -57,6 +57,8 @@ t, F = lees_bestand(naam_csv)
 x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,F)
 versnelling_stim = F / massa
 
+df_out = pd.DataFrame()
+
 plt.figure(0)
 #plt.plot(t,v,label='snelheid(m/s)')
 #plt.plot(t,a,label='versnelling(m/s^2)')
