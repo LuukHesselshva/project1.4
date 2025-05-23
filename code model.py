@@ -6,7 +6,7 @@ import pandas as pd
 
 #csv naam
 naam_csv = 'versnellingsprofiel_scherp.csv'
-
+output_csv = 'data'
 # start waarde
 massa = 0.50 # in kg
 veer_constante = 50 # N/m
