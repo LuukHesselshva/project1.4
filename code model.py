@@ -74,6 +74,6 @@ plt.title('model van de sensor')
 plt.xlabel('Tijd (s)')
 plt.ylabel('afstand (m)')
 plt.legend()
-plt.grid(True)
+plt.grid()
 
 plt.show()
