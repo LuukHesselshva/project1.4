@@ -6,7 +6,7 @@ import pandas as pd
 
 #csv naam
 naam_csv = 'versnellingsprofiel_scherp.csv'
-output_csv = 'data'
+output_csv_naam = 'data'
 # start waarde
 massa = 0.50 # in kg
 veer_constante = 50 # N/m
@@ -57,7 +57,14 @@ t, F = lees_bestand(naam_csv)
 x, v, a, a_sensor= model(t,massa,demmpingsfactor,veer_constante,x0,v0,F)
 versnelling_stim = F / massa
 
-df_out = pd.DataFrame()
+df_out = pd.DataFrame({
+    'Tijd' : [t],
+    'positie' : [x],
+    'versnelling_sensor' : [a_sensor],
+    'versnelling_stim' : [versnelling_stim]
+})
+
+df_out.to_csv(output_csv_naam)
 
 plt.figure(0)
 #plt.plot(t,v,label='snelheid(m/s)')
