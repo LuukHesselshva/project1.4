@@ -64,7 +64,8 @@ df_out = pd.DataFrame({
     'versnelling_stim' : [versnelling_stim]
 })
 
-df_out.to_csv(output_csv_naam, + '.csv')
+df_out.to_csv(output_csv_naam + '.csv')
+
 
 plt.figure(0)
 #plt.plot(t,v,label='snelheid(m/s)')
