@@ -27,10 +27,11 @@ def ultra():
    timepassed = signalon - signaloff
    distance = ((timepassed * 0.0343) / 2) + 0.4
    versnelling = (distance * K_veer)/massa
-   print("The distance from object is ",distance,"cm")
    Afstand.append(distance)
    a_sensor.append(versnelling)
+   print("The distance from object is ",distance,"cm")
+   print("a is: ",distance,"cm/s")
 
-while utime < tijd_meet:
+while True:
    ultra()
    utime.sleep(1)
