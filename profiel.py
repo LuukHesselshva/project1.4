@@ -16,22 +16,21 @@ def lees_bestand(naam_csv):
 
 t,y,a = lees_bestand(naam_csv) 
 
-fig, ax1 = plt.subplots(figsize=(10, 6))
+plt.figure(0)
+plt.scatter(t, y, label='Uitwijking')
+plt.xlabel("t")
+plt.ylabel("y (cm)", color='blue')
+plt.tick_params(axis='y', labelcolor='blue')
+plt.axhline(0, color='black', linestyle='solid', linewidth=0.8)
+plt.grid()
 
-ax1.plot(t, y, 'b-', label='Uitwijking')
-ax1.set_xlabel("t")
-ax1.set_ylabel("y (cm)", color='blue')
-ax1.tick_params(axis='y', labelcolor='blue')
-
-ax1.axhline(0, color='black', linestyle='solid', linewidth=0.8)
-
-ax2 = ax1.twinx()
-ax2.plot(t, a, 'r-', label='versnelling')
-ax2.set_ylabel("a (m/s^2)", color='red')
-ax2.tick_params(axis='y', labelcolor='red')
-
+plt.figure(1)
+plt.scatter(t, a, label='versnelling',color='red')
+plt.xlabel("t")
+plt.ylabel("a (m/s^2)", color='red')
+plt.tick_params(axis='y', labelcolor='red')
+plt.grid()
 #ax1.set_ylim(-2, 2)
 #ax2.set_ylim(-2, 2)
 
-fig.legend(loc="upper right", bbox_to_anchor=(1,1), bbox_transform=ax1.transAxes)
 plt.show()
