@@ -10,6 +10,7 @@ pause = 0.1
 #variabele
 massa = 0.5
 K_veer = 100
+d0 = 0
 
 #tijd
 tijd_meet = 5
@@ -31,7 +32,7 @@ def ultra():
        signalon = utime.ticks_us()
    timepassed = signalon - signaloff
 # berekeningen 
-   distance = ((timepassed * 0.0343) / 2) + 0.4
+   distance = (((timepassed * 0.0343) / 2) + 0.4) - d0
    versnelling = ((distance/100) * K_veer)/massa
    tijd_run = (utime.ticks_ms()-t0)/1000
 # print gegevens   
