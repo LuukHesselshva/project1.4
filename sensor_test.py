@@ -3,12 +3,23 @@ import utime
 import os
 
 #csv naam
-file_name = 'test.csv'
+file_name = "versnelling"
+if (file_name + ".csv") in os.listdir():
+    for i in range(1,100):
+        if (file_name + str(i)) in os.listdir():
+            pass
+        elif not(file_name + str(i)+ ".csv") in os.listdir():
+            file_name += str(i) + ".csv"
+            break
+else:
+    file_name += ".csv"
+print(file_name)
+
 #pauze
-pause = 0.1
+pause = 0.01
 
 #variabele
-massa = 0.5
+massa = 0.05
 K_veer = 100
 d0 = 0
 
@@ -19,8 +30,10 @@ run = True
 
 trigger = Pin(3, Pin.OUT)
 echo = Pin(2, Pin.IN)
+led = Pin(25,Pin.OUT)
 def ultra():
 # meten met de sensor
+   led.toggle()
    trigger.low()
    utime.sleep_us(2)
    trigger.high()
@@ -51,3 +64,6 @@ def ultra():
 while run == True:
    run = ultra()
    utime.sleep(pause)
+if run == False:
+    led.value(0)
+

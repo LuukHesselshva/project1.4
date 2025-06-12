@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import math
 import pandas as pd
 
-naam_csv = 'test.csv'
+naam_csv = 'testmeting2.csv'
 
 def lees_bestand(naam_csv):
     df = pd.read_csv(naam_csv)
@@ -14,7 +14,12 @@ def lees_bestand(naam_csv):
     versnelling = np.array(df['versnelling'])
     return tijd,uitwijking,versnelling
 
+def average(x):
+    return np.average(x)
+
 t,y,a = lees_bestand(naam_csv) 
+null = average(y)
+print(null)
 
 plt.figure(0)
 plt.scatter(t, y, label='Uitwijking')
