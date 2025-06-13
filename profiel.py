@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import math
 import pandas as pd
 
-naam_csv = 'response.csv'
+naam_csv = 'versnellingnull.csv'
 
 def lees_bestand(naam_csv):
     df = pd.read_csv(naam_csv)
