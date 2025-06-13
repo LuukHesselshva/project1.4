@@ -8,8 +8,8 @@ import pandas as pd
 naam_csv = 'versnellingsprofiel_scherp.csv'
 output_csv_naam = 'data'
 # start waarde
-massa = 0.50 # in kg
-veer_constante = 50 # N/m
+massa = 0.060 # in kg
+veer_constante = 100 # N/m
 demmpingsfactor = np.sqrt(4*massa*veer_constante) # Kg/s
 x0 = 0 # m
 v0 = 0 # m/s
@@ -30,7 +30,7 @@ def lees_bestand(naam_csv):
     df.columns = df.columns.str.strip()  # verwijder spaties
     tijd = np.array(df['# tijd (s)'])
     versnelling = np.array(df['versnelling (m/s^2)'])
-    kracht = versnelling * massa
+    kracht = (versnelling * 30) * massa
     return tijd,kracht
 
 def model(t,m,b,k,x0,v0,F):
@@ -65,7 +65,7 @@ df_out = pd.DataFrame({
 })
 
 df_out.to_csv(output_csv_naam + '.csv')
-
+x_cm = x * 100
 
 plt.figure(0)
 #plt.plot(t,v,label='snelheid(m/s)')
@@ -75,15 +75,16 @@ plt.plot(t,versnelling_stim,label='stimulus(m/s^2)',color='red')
 plt.xlabel('Tijd (s)')
 plt.ylabel('versnelling (m/s^2)')
 plt.title('model van de sensor')
-plt.legend()
+plt.legend(loc='upper right')
 plt.grid(True)
 
 plt.figure(1)
-plt.plot(t,x,label='positie(m)',color ='blue')
+plt.plot(t,x_cm,label='positie(cm)',color ='blue')
 plt.title('model van de sensor')
 plt.xlabel('Tijd (s)')
-plt.ylabel('afstand (m)')
-plt.legend()
+plt.ylabel('afstand (cm)')
+plt.legend(loc='upper right')
+
 plt.grid()
 
 plt.show()
