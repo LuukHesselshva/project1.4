@@ -5,7 +5,7 @@ import math
 import pandas as pd
 
 #csv naam
-naam_csv = 'versnellingsprofiel_scherp.csv'
+naam_csv = 'versnellingsprofiel_C.csv'
 output_csv_naam = 'data'
 # start waarde
 massa = 0.060 # in kg
