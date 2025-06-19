@@ -75,7 +75,7 @@ plt.plot(t,versnelling_stim,label='stimulus(m/s^2)',color='red')
 plt.xlabel('Tijd (s)')
 plt.ylabel('versnelling (m/s^2)')
 plt.title('model van de sensor')
-plt.legend(loc='upper right')
+plt.legend(loc='lower right')
 plt.grid(True)
 
 plt.figure(1)
@@ -83,7 +83,7 @@ plt.plot(t,x_cm,label='positie(cm)',color ='blue')
 plt.title('model van de sensor')
 plt.xlabel('Tijd (s)')
 plt.ylabel('afstand (cm)')
-plt.legend(loc='upper right')
+plt.legend(loc='lower right')
 
 plt.grid()
 
